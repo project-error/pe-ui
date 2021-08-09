@@ -2,7 +2,7 @@ import React, {
   Context,
   createContext,
   useCallback,
-  useContext,
+  useContext, useEffect,
   useState,
 } from 'react';
 import { fetchNui } from '../utils/fetchNui';
@@ -36,8 +36,12 @@ const defaultPromptValue: PromptInfo = {
 };
 
 export const TextPromptProvider: React.FC = ({ children }) => {
-  const [promptVisible, setPromptVisible] = useState(true);
+  const [promptVisible, setPromptVisible] = useState(false);
   const [promptInfo, setPromptInfo] = useState<PromptInfo>(defaultPromptValue);
+
+  useEffect(() => {
+    fetchNui('requestFocus', promptVisible)
+  }, [promptVisible])
 
   const openPrompt = useCallback((promptInfo: PromptInfo) => {
     setPromptInfo(promptInfo);
@@ -46,10 +50,8 @@ export const TextPromptProvider: React.FC = ({ children }) => {
 
   const handleSubmitPrompt = useCallback(
     (promptId: string, content: string) => {
-      fetchNui('submitPrompt', { promptId, content }).then(() => {
-        setPromptVisible(false);
-        setPromptInfo(defaultPromptValue);
-      });
+      fetchNui(`promptNuiResp-${promptId}`, ['submitted', content])
+      setPromptVisible(false)
     },
     []
   );
@@ -57,13 +59,12 @@ export const TextPromptProvider: React.FC = ({ children }) => {
   const handleClosePrompt = useCallback((promptId: string) => {
     setPromptVisible(false);
     setPromptInfo(defaultPromptValue);
+    fetchNui(`promptNuiResp-${promptId}`, ['closed', null])
   }, []);
 
-  useNuiEvent<PromptInfo>('openPrompt', promptInfo => {
-    openPrompt(promptInfo);
-  });
+  useNuiEvent<PromptInfo>('openPrompt', openPrompt);
 
-  useNuiEvent<string>('closePrompt', promptId => {});
+  useNuiEvent<string>('closePrompt', handleClosePrompt);
 
   return (
     <TextPromptCtx.Provider

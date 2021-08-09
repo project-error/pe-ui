@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Box,
   Button,
@@ -20,6 +20,7 @@ import { usePromptCtx } from '../providers/TextPromptProvider';
 export const TextPrompt: React.FC = () => {
   const { handleClosePrompt, promptInfo, visible, handleSubmitPrompt } =
     usePromptCtx();
+
   const [promptVal, setPromptVal] = useState('');
 
   const handleSubmit = () => {
