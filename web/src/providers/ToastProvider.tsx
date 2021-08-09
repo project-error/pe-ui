@@ -22,8 +22,8 @@ debugData<ToastOpts>([
     action: 'addPersistentToast',
     data: {
       id: 'niceToast',
-      position: 'bottom-left',
-      status: 'info',
+      position: 'top-right',
+      status: 'error',
       description: 'You fucking suck',
     },
   },
