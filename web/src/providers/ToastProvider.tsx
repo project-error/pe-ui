@@ -4,10 +4,19 @@ import { useNuiEvent } from '../hooks/useNuiEvent';
 import { debugData } from '../utils/debugData';
 
 interface ToastOpts {
-  position: ToastOptions['position'];
+  position?: ToastOptions['position'];
   status?: 'success' | 'error' | 'warning' | 'info';
   id: ToastOptions['id'];
-  description: string;
+  message: string;
+  title?: string
+}
+
+interface AddToastOptions {
+  position?: ToastOptions['position'];
+  status?: 'success' | 'error' | 'warning' | 'info';
+  message: string;
+  title?: string
+  duration?: number
 }
 
 interface ToastCtxValue {
@@ -24,7 +33,7 @@ debugData<ToastOpts>([
       id: 'niceToast',
       position: 'top-right',
       status: 'error',
-      description: 'You fucking suck',
+      message: 'You fucking suck',
     },
   },
 ]);
@@ -36,7 +45,8 @@ export const ToastProvider: React.FC = ({ children }) => {
     (toastOpts: ToastOpts) => {
       toast({
         id: toastOpts.id,
-        description: toastOpts.description,
+        title: toastOpts.title,
+        description: toastOpts.message,
         position: toastOpts.position,
         status: toastOpts.status,
         isClosable: false,
@@ -53,8 +63,26 @@ export const ToastProvider: React.FC = ({ children }) => {
     [toast]
   );
 
+  const addToast = useCallback((toastOpts: AddToastOptions) => {
+    toast({
+      position: toastOpts.position,
+      isClosable: false,
+      title: toastOpts.title,
+      description: toastOpts.message,
+      status: toastOpts.status,
+      duration: toastOpts.duration
+    })
+  }, [toast])
+
+  const closeAllToasts = useCallback(() => {
+    toast.closeAll()
+  }, [toast])
+
+  useNuiEvent<AddToastOptions>('addToast', addToast)
   useNuiEvent<ToastOpts>('addPersistentToast', addPersistentToast);
   useNuiEvent<ToastId>('clearPersistentToast', clearPersistentToast);
+  useNuiEvent<ToastId>('closeAllToasts', closeAllToasts);
+
 
   return (
     <ToastCtx.Provider value={{ addPersistentToast, clearPersistentToast }}>
