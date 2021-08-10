@@ -8,15 +8,15 @@ interface ToastOpts {
   status?: 'success' | 'error' | 'warning' | 'info';
   id: ToastOptions['id'];
   message: string;
-  title?: string
+  title?: string;
 }
 
 interface AddToastOptions {
   position?: ToastOptions['position'];
   status?: 'success' | 'error' | 'warning' | 'info';
   message: string;
-  title?: string
-  duration?: number
+  title?: string;
+  duration?: number;
 }
 
 interface ToastCtxValue {
@@ -26,17 +26,18 @@ interface ToastCtxValue {
 
 const ToastCtx = createContext<null | ToastCtxValue>(null);
 
-debugData<ToastOpts>([
-  {
-    action: 'addPersistentToast',
-    data: {
-      id: 'niceToast',
-      position: 'top-right',
-      status: 'error',
-      message: 'You fucking suck',
-    },
-  },
-]);
+//
+// debugData<ToastOpts>([
+//   {
+//     action: 'addPersistentToast',
+//     data: {
+//       id: 'niceToast',
+//       position: 'top-right',
+//       status: 'error',
+//       message: 'Uh oh spaghettios',
+//     },
+//   },
+// ]);
 
 export const ToastProvider: React.FC = ({ children }) => {
   const toast = useToast();
@@ -63,26 +64,28 @@ export const ToastProvider: React.FC = ({ children }) => {
     [toast]
   );
 
-  const addToast = useCallback((toastOpts: AddToastOptions) => {
-    toast({
-      position: toastOpts.position,
-      isClosable: false,
-      title: toastOpts.title,
-      description: toastOpts.message,
-      status: toastOpts.status,
-      duration: toastOpts.duration
-    })
-  }, [toast])
+  const addToast = useCallback(
+    (toastOpts: AddToastOptions) => {
+      toast({
+        position: toastOpts.position,
+        isClosable: false,
+        title: toastOpts.title,
+        description: toastOpts.message,
+        status: toastOpts.status,
+        duration: toastOpts.duration,
+      });
+    },
+    [toast]
+  );
 
   const closeAllToasts = useCallback(() => {
-    toast.closeAll()
-  }, [toast])
+    toast.closeAll();
+  }, [toast]);
 
-  useNuiEvent<AddToastOptions>('addToast', addToast)
+  useNuiEvent<AddToastOptions>('addToast', addToast);
   useNuiEvent<ToastOpts>('addPersistentToast', addPersistentToast);
   useNuiEvent<ToastId>('clearPersistentToast', clearPersistentToast);
   useNuiEvent<ToastId>('closeAllToasts', closeAllToasts);
-
 
   return (
     <ToastCtx.Provider value={{ addPersistentToast, clearPersistentToast }}>
