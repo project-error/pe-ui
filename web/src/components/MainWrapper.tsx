@@ -2,11 +2,13 @@ import React from 'react';
 import { Box } from '@chakra-ui/react';
 import { TextPrompt } from './TextPrompt';
 import { ToastProvider } from '../providers/ToastProvider';
-import { SettingsModal } from './SettingsModal';
+import { SettingsModal } from './settings/SettingsModal';
+import { CinematicBars } from './CinematicBars';
 
 const MainWrapper: React.FC = () => {
   return (
     <ToastProvider>
+      <CinematicBars />
       <Box h='100%' w='100%' p={4} bg='none'>
         <TextPrompt />
         <SettingsModal />
