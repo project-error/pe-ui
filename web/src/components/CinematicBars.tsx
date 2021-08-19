@@ -28,18 +28,21 @@ export const CinematicBars: React.FC = () => {
   });
 
   return (
-    <Slide in={cinematicBars} unmountOnExit={true}>
-      <Box
-        h='100vh'
-        zIndex={999}
-        w='100%'
-        display='flex'
-        justifyContent='space-between'
-        flexDir='column'
-      >
+    <Box
+      position='absolute'
+      h='100vh'
+      zIndex={999}
+      w='100%'
+      display='flex'
+      justifyContent='space-between'
+      flexDir='column'
+    >
+      <Slide in={cinematicBars} direction='top'>
         <Box bg='black' w='100%' h={`${evenSize}vh`} />
+      </Slide>
+      <Slide in={cinematicBars} direction='bottom'>
         <Box bg='black' w='100%' h={`${evenSize}vh`} />
-      </Box>
-    </Slide>
+      </Slide>
+    </Box>
   );
 };
