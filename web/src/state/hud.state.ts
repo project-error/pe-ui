@@ -3,11 +3,11 @@ import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 const hudState = {
   health: atom({
     key: 'health',
-    default: 0,
+    default: 100,
   }),
   armor: atom({
     key: 'armor',
-    default: 0,
+    default: 100,
   }),
 };
 

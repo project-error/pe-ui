@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   CircularProgress,
   CircularProgressLabel,
@@ -24,12 +24,35 @@ export const CircleItem: React.FC<CircleItemProps> = ({
   hideWhenZero,
   ...props
 }) => {
+  const [visible, setVisible] = useState(true);
+
+  const handleAnimationEnd = () => {
+    if (!hideWhenZero) return;
+    if (value <= (props?.min || 0)) {
+      setVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    if (value > (props?.min || 0) && !visible) {
+      setVisible(true);
+    }
+  }, [props?.min, value, visible]);
+
   return (
-    <Fade in={hideWhenZero ? value !== 0 : true} unmountOnExit>
+    <Fade
+      in={visible}
+      unmountOnExit
+      delay={{
+        enter: 0,
+        exit: 1,
+      }}
+    >
       <CircularProgress
         value={value}
+        onTransitionEnd={handleAnimationEnd}
         color={props.color || 'white'}
-        bg={'gray.800'}
+        bg='gray.800'
         capIsRound
         rounded={100}
         {...props}
