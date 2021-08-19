@@ -1,9 +1,27 @@
+if not ResourceConfig.enableTestCommands then return end
+
+debugPrint('Registering test commands')
+
 RegisterCommand('testPrompt', function()
   local status, content = exports['pe-ui']:startPrompt({
     placeholder = 'Sent by lua',
     description = 'This is the description sent by lua',
     id = 'myTestPrompt',
     title = 'Wow this has a title!'
+  })
+
+  debugPrint('Export result >')
+  debugPrint('Status | ' ..status)
+  debugPrint('Content | ' .. tostring(content))
+end)
+
+RegisterCommand('testPromptClose', function()
+  local status, content = exports['pe-ui']:startPrompt({
+    placeholder = 'Closable Prompt',
+    description = 'This is a prompt that is closable',
+    id = 'myTestPrompt',
+    title = 'Closable Prompt',
+    isClosable = true
   })
 
   debugPrint('Export result >')
