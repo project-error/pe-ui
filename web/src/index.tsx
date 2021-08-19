@@ -6,6 +6,11 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { customTheme } from './styles/theme';
 import { TextPromptProvider } from './providers/TextPromptProvider';
 import { RecoilRoot } from 'recoil';
+import { registerBrowserFuncs } from './utils/registerBrowserFuncs';
+
+// Register window helper functions in browser
+// to replicate lua behavior
+registerBrowserFuncs();
 
 ReactDOM.render(
   <React.StrictMode>

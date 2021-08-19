@@ -9,3 +9,5 @@ export const getResourceName = (): string =>
   (window as any).GetParentResourceName
     ? (window as any).GetParentResourceName()
     : 'pe-ui';
+
+export const Delay = (ms: number) => new Promise(resp => setTimeout(resp, ms));
