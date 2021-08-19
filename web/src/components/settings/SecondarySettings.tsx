@@ -14,8 +14,6 @@ export const SecondarySettings: React.FC = () => {
   const [settings, setSettings] = useSettings();
 
   const handleCinematicToggle = (bool: boolean) => {
-    console.log(bool);
-
     setSettings(prevSettings =>
       mergeSettings(prevSettings, { cinematicBars: bool })
     );

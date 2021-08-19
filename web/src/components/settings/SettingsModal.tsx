@@ -17,7 +17,7 @@ import { SecondarySettings } from './SecondarySettings';
 import { OtherSettings } from './OtherSettings';
 
 export const SettingsModal: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     fetchNui('requestFocus', isOpen);
