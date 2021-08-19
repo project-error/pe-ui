@@ -1,4 +1,8 @@
 {
   "updateChecker": false,
-  "enableTestCommands": true
+  "enableTestCommands": true,
+  "defaultHUDSettings": {
+    "cinematicBars": false,
+    "cinematicBarSize": 50
+  }
 }

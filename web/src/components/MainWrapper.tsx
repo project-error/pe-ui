@@ -7,13 +7,15 @@ import { CinematicBars } from './CinematicBars';
 
 const MainWrapper: React.FC = () => {
   return (
-    <ToastProvider>
-      <CinematicBars />
-      <Box h='100%' w='100%' p={4} bg='none'>
-        <TextPrompt />
-        <SettingsModal />
-      </Box>
-    </ToastProvider>
+    <React.Suspense fallback={<></>}>
+      <ToastProvider>
+        <CinematicBars />
+        <Box h='100%' w='100%' p={4} bg='none'>
+          <TextPrompt />
+          <SettingsModal />
+        </Box>
+      </ToastProvider>
+    </React.Suspense>
   );
 };
 
