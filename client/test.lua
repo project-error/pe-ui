@@ -117,3 +117,17 @@ RegisterCommand('clearPersistent', function()
   exports['pe-ui']:clearPersistentToast('myPersistentNoti')
   exports['pe-ui']:clearPersistentToast('myPersistentNoti2')
 end)
+
+RegisterCommand('progBar', function()
+  local isComplete = exports['pe-ui']:startProgbar({
+    color = 'green',
+    id = 'myProgBar',
+    duration = 10000,
+    isCancellable = true
+  })
+  debugPrint('Prog bar complete:' .. tostring(isComplete))
+end)
+
+RegisterCommand('closeProgbar', function()
+  exports['pe-ui']:closeProgbar()
+end)
