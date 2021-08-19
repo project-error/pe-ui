@@ -1,8 +1,11 @@
 {
   "updateChecker": false,
   "enableTestCommands": true,
+  "voiceUpdateTime": 150,
   "defaultHUDSettings": {
     "cinematicBars": false,
-    "cinematicBarSize": 50
-  }
+    "cinematicBarSize": 50,
+    "healthArmorUpdate": 100
+  },
+  "targetFramework": "qb-core"
 }

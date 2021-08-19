@@ -1,7 +1,6 @@
 import React, { createContext, useCallback } from 'react';
 import { ToastId, ToastOptions, useToast } from '@chakra-ui/react';
 import { useNuiEvent } from '../hooks/useNuiEvent';
-import { debugData } from '../utils/debugData';
 
 interface ToastOpts {
   position?: ToastOptions['position'];
