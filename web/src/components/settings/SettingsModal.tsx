@@ -36,6 +36,7 @@ export const SettingsModal: React.FC = () => {
     <Modal
       isOpen={isOpen}
       onClose={handleClose}
+      closeOnEsc={true}
       size='3xl'
       isCentered
       closeOnOverlayClick={false}
