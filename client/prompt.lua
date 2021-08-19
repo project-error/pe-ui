@@ -8,6 +8,7 @@ table object:
   description: string;
   id: string;
   title: string;
+  isClosable?: boolean;
 }
 ]]
 ---@param promptTable
@@ -36,10 +37,14 @@ local function startPrompt(promptTable)
   -- TODO: This causes a memory leak at the current moment
   -- as the RegisteredType is never cleaned up from the ResourceUI
   -- container in cpp. Feature pending
-  RemovEventHandler(eventData)
 
+  -- Before we remove the event handler we need to copy the data
+  -- otherwise we won't get a proper response.
+  local resultCopy = result
+
+  RemoveEventHandler(eventData)
   -- Returns two results as ['closed' | 'submitted', content | null]
-  return result[1], result[2]
+  return resultCopy[1], resultCopy[2]
 end
 
 exports('startPrompt', startPrompt)

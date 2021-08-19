@@ -2,7 +2,8 @@ import React, {
   Context,
   createContext,
   useCallback,
-  useContext, useEffect,
+  useContext,
+  useEffect,
   useState,
 } from 'react';
 import { fetchNui } from '../utils/fetchNui';
@@ -17,10 +18,11 @@ interface PromptCtxValue {
 }
 
 interface PromptInfo {
-  placeholder: string;
+  placeholder?: string;
   description: string;
   id: string;
   title: string;
+  isClosable?: boolean;
 }
 
 const TextPromptCtx = createContext<PromptCtxValue | null>(null);
@@ -29,10 +31,11 @@ export const usePromptCtx = () =>
   useContext<PromptCtxValue>(TextPromptCtx as Context<PromptCtxValue>);
 
 const defaultPromptValue: PromptInfo = {
-  placeholder: 'placeholder text',
+  placeholder: 'Enter here',
   description: 'adadadadadadadadadadadadadadada',
   id: '132131',
   title: 'adada',
+  isClosable: true,
 };
 
 export const TextPromptProvider: React.FC = ({ children }) => {
@@ -40,8 +43,8 @@ export const TextPromptProvider: React.FC = ({ children }) => {
   const [promptInfo, setPromptInfo] = useState<PromptInfo>(defaultPromptValue);
 
   useEffect(() => {
-    fetchNui('requestFocus', promptVisible)
-  }, [promptVisible])
+    fetchNui('requestFocus', promptVisible);
+  }, [promptVisible]);
 
   const openPrompt = useCallback((promptInfo: PromptInfo) => {
     setPromptInfo(promptInfo);
@@ -50,8 +53,8 @@ export const TextPromptProvider: React.FC = ({ children }) => {
 
   const handleSubmitPrompt = useCallback(
     (promptId: string, content: string) => {
-      fetchNui(`promptNuiResp-${promptId}`, ['submitted', content])
-      setPromptVisible(false)
+      fetchNui(`promptNuiResp-${promptId}`, ['submitted', content]);
+      setPromptVisible(false);
     },
     []
   );
@@ -59,7 +62,7 @@ export const TextPromptProvider: React.FC = ({ children }) => {
   const handleClosePrompt = useCallback((promptId: string) => {
     setPromptVisible(false);
     setPromptInfo(defaultPromptValue);
-    fetchNui(`promptNuiResp-${promptId}`, ['closed', null])
+    fetchNui(`promptNuiResp-${promptId}`, ['closed', null]);
   }, []);
 
   useNuiEvent<PromptInfo>('openPrompt', openPrompt);

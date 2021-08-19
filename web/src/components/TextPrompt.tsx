@@ -23,8 +23,15 @@ export const TextPrompt: React.FC = () => {
 
   const [promptVal, setPromptVal] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     handleSubmitPrompt(promptInfo.id, promptVal);
+    setPromptVal('');
+  };
+
+  const handleClose = () => {
+    handleClosePrompt(promptInfo.id);
+    setPromptVal('');
   };
 
   const initRef = useRef(null);
@@ -32,47 +39,52 @@ export const TextPrompt: React.FC = () => {
   return (
     <Modal
       isOpen={visible}
-      onClose={() => handleClosePrompt(promptInfo.id)}
+      closeOnEsc={!!promptInfo.isClosable}
+      closeOnOverlayClick={false}
+      onClose={handleClose}
       initialFocusRef={initRef}
       isCentered
       size='xl'
     >
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>{promptInfo.title}</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody pb={3}>
-          <Box pb={4}>
-            <Text size='md'>{promptInfo.description}</Text>
-          </Box>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents='none'
-              fontSize='1.2em'
-              children={<EditIcon />}
-            />
-            <Input
-              ref={initRef}
-              placeholder={promptInfo.placeholder}
-              value={promptVal}
-              onChange={e => setPromptVal(e.target.value)}
-            />
-          </InputGroup>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            colorScheme='blue'
-            mr={3}
-            onClick={handleSubmit}
-            disabled={!promptVal.length}
-          >
-            Submit
-          </Button>
-          <Button onClick={() => handleClosePrompt(promptInfo.id)}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </ModalContent>
+      <form onSubmit={handleSubmit}>
+        <ModalContent>
+          <ModalHeader>{promptInfo.title}</ModalHeader>
+          {promptInfo?.isClosable && <ModalCloseButton />}
+          <ModalBody pb={3}>
+            <Box pb={4}>
+              <Text size='md'>{promptInfo.description}</Text>
+            </Box>
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents='none'
+                fontSize='1.2em'
+                children={<EditIcon />}
+              />
+              <Input
+                ref={initRef}
+                placeholder={promptInfo.placeholder}
+                value={promptVal}
+                onChange={e => setPromptVal(e.target.value)}
+              />
+            </InputGroup>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              colorScheme='blue'
+              disabled={!promptVal.length}
+              type='submit'
+            >
+              Submit
+            </Button>
+            {promptInfo?.isClosable && (
+              <Button ml={3} onClick={handleClose}>
+                Cancel
+              </Button>
+            )}
+          </ModalFooter>
+        </ModalContent>
+      </form>
     </Modal>
   );
 };
