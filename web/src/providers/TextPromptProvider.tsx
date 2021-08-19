@@ -8,22 +8,7 @@ import React, {
 } from 'react';
 import { fetchNui } from '../utils/fetchNui';
 import { useNuiEvent } from '../hooks/useNuiEvent';
-
-interface PromptCtxValue {
-  visible: boolean;
-  promptInfo: PromptInfo;
-  openPrompt: (info: PromptInfo) => void;
-  handleSubmitPrompt: (promptId: string, content: string) => void;
-  handleClosePrompt: (promptId: string) => void;
-}
-
-interface PromptInfo {
-  placeholder?: string;
-  description: string;
-  id: string;
-  title: string;
-  isClosable?: boolean;
-}
+import { PromptCtxValue, PromptInfo } from '../types/prompt.types';
 
 const TextPromptCtx = createContext<PromptCtxValue | null>(null);
 
