@@ -5,17 +5,6 @@ import { HudStateAtomParam } from '../state/hud.state';
 
 (window as any).pe = {};
 
-function dispatchUiEvent<T = any>(method: string, data: T) {
-  window.dispatchEvent(
-    new MessageEvent('message', {
-      data: {
-        method,
-        data,
-      },
-    })
-  );
-}
-
 const castWindow = (window as any).pe;
 
 // Just a simple function that will attach useful window functions whenever

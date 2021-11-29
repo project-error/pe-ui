@@ -1,11 +1,4 @@
-import {
-  atom,
-  atomFamily,
-  SerializableParam,
-  useRecoilValue,
-  useSetRecoilState,
-} from 'recoil';
-import { useCallback } from 'react';
+import { atom, atomFamily, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const hudState = {
   health: atom({

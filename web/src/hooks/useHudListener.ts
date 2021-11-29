@@ -7,7 +7,6 @@ import {
 } from '../state/hud.state';
 import { useNuiEvent } from './useNuiEvent';
 import { useSetPauseActive } from '../state/base.state';
-import { useCallback } from 'react';
 import { useRecoilCallback } from 'recoil';
 
 export const useHudListener = () => {
