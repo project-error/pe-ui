@@ -1,13 +1,5 @@
-import React, { useState } from 'react';
-import {
-  Box,
-  Center,
-  Flex,
-  Heading,
-  Input,
-  Text,
-  useToast,
-} from '@chakra-ui/react';
+import React from 'react';
+import { Box, Center, Flex, Heading, Input, Text } from '@chakra-ui/react';
 import { noop } from '../../utils/misc';
 import { useAlertProvider } from '../../providers/ToastProvider';
 
