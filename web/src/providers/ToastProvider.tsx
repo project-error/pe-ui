@@ -1,4 +1,4 @@
-import React, { createContext, useCallback } from 'react';
+import React, { createContext, useCallback, useContext } from 'react';
 import { ToastId, ToastOptions, useToast } from '@chakra-ui/react';
 import { useNuiEvent } from '../hooks/useNuiEvent';
 
@@ -21,6 +21,7 @@ interface AddToastOptions {
 interface ToastCtxValue {
   addPersistentToast: (toastOpts: ToastOpts) => void;
   clearPersistentToast: (id: ToastOptions['id']) => void;
+  addToast: (opts: AddToastOptions) => void;
 }
 
 const ToastCtx = createContext<null | ToastCtxValue>(null);
@@ -87,8 +88,13 @@ export const ToastProvider: React.FC = ({ children }) => {
   useNuiEvent<ToastId>('closeAllToasts', closeAllToasts);
 
   return (
-    <ToastCtx.Provider value={{ addPersistentToast, clearPersistentToast }}>
+    <ToastCtx.Provider
+      value={{ addPersistentToast, clearPersistentToast, addToast }}
+    >
       {children}
     </ToastCtx.Provider>
   );
 };
+
+// @ts-ignore
+export const useAlertProvider = () => useContext<ToastCtxValue>(ToastCtx);

@@ -5,7 +5,9 @@
   "defaultHUDSettings": {
     "cinematicBars": false,
     "cinematicBarSize": 50,
-    "healthArmorUpdate": 100
+    "healthArmorInterval": 100,
+    "voiceUpdateInterval": 100,
+    "screenshotMode": false
   },
   "targetFramework": "qb-core"
 }

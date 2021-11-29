@@ -1,33 +1,58 @@
 local DisplayRadar = DisplayRadar
 local NetworkIsPlayerTalking = NetworkIsPlayerTalking
 local Wait = Wait
-
+local HideHudComponentThisFrame = HideHudComponentThisFrame
 local cinematicModeOn = false
+local screenshotMode = false
 
--- We might want to add elements we want to also
--- hide at at a later date
-local hudElementsToTarget = {}
+USER_SETTINGS = nil
 
-local function startHudLoop()
-  cinematicModeOn = true
-  DisplayRadar(false)
-  --CreateThread(function()
-  --while cinematicModeOn do
-  -- Always toggle radar when cinematicModeIsOn
-      --for i = 0, #hudElementsToTarget do
-      --  HideHelpTextThisFrame(hudElementsToTarget[i])
-      --end
-      --Wait(0)
-    --end
-  --end)
+local function hideAllElLoop()
+  CreateThread(function()
+    while screenshotMode do
+      HideHudComponentThisFrame(1)
+      HideHudComponentThisFrame(2)
+      HideHudComponentThisFrame(3)
+      HideHudComponentThisFrame(4)
+      HideHudComponentThisFrame(6)
+      HideHudComponentThisFrame(7)
+      HideHudComponentThisFrame(8)
+      HideHudComponentThisFrame(9)
+      HideHudComponentThisFrame(10)
+      HideHudComponentThisFrame(16)
+      HideHudComponentThisFrame(19)
+      HideHudComponentThisFrame(20)
+      HideHudComponentThisFrame(21)
+      HideHudComponentThisFrame(22)
+      Wait(0)
+    end
+  end)
 end
+
+RegisterNUICallback('userSettingsUpdated', function(userSettings, cb)
+  USER_SETTINGS = userSettings
+  cb({})
+end)
+
 
 RegisterNUICallback('cinematicModeToggle', function(bool, cb)
   debugPrint('Cinematic mode toggle > ' .. tostring(bool))
+  cinematicModeOn = bool
   if bool then
-    startHudLoop()
+    DisplayRadar(false)
+    hideAllElLoop()
   else
-    cinematicModeOn = false
+    DisplayRadar(true)
+  end
+  cb({})
+end)
+
+RegisterNUICallback('screenshotModeToggle', function(bool, cb)
+  debugPrint('Screenshot mode toggle > ' .. tostring(bool))
+  screenshotMode = bool
+  if bool then
+    DisplayRadar(false)
+  else
     DisplayRadar(true)
   end
   cb({})
@@ -66,7 +91,7 @@ CreateThread(function()
       debugPrint('Voice activated > false')
       wasTalking = false
     end
-    Wait(ResourceConfig.voiceUpdateTime)
+    Wait(not USER_SETTINGS and ResourceConfig.voiceUpdateTime or USER_SETTINGS.voiceUpdateTime)
   end
 end)
 
@@ -93,7 +118,7 @@ CreateThread(function()
       end
     end
 
-    Wait(ResourceConfig.defaultHUDSettings.healthArmorUpdate)
+    Wait(not USER_SETTINGS and ResourceConfig.defaultHUDSettings.healthArmorUpdate or USER_SETTINGS.healthArmorInterval)
   end
 end)
 

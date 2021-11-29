@@ -15,7 +15,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { EditIcon } from '@chakra-ui/icons';
-import { usePromptCtx } from '../providers/TextPromptProvider';
+import { usePromptCtx } from '../../providers/TextPromptProvider';
 
 export const TextPrompt: React.FC = () => {
   const { handleClosePrompt, promptInfo, visible, handleSubmitPrompt } =

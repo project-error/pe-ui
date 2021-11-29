@@ -28,7 +28,7 @@ export const SettingsModal: React.FC = () => {
   });
 
   const handleClose = () => {
-    fetchNui('settingsModalClosed');
+    fetchNui('settingsModalClosed', undefined, {});
     setIsOpen(false);
   };
 

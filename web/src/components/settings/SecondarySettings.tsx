@@ -2,13 +2,7 @@ import React from 'react';
 import { Box, Stack } from '@chakra-ui/react';
 import { SettingsSlider } from './SettingsSlider';
 import { SettingSwitch } from './SettingSwitch';
-import { useSettings } from '../../state/settings.state';
-import { UserSettings } from '../../types/settings.types';
-
-const mergeSettings = (
-  oldSettings: UserSettings,
-  newSettings: Partial<UserSettings>
-) => ({ ...oldSettings, ...newSettings });
+import { mergeSettings, useSettings } from '../../state/settings.state';
 
 export const SecondarySettings: React.FC = () => {
   const [settings, setSettings] = useSettings();

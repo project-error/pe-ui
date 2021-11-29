@@ -23,7 +23,7 @@ export async function fetchNui<T = any>(
     body: JSON.stringify(data),
   };
 
-  if (isEnvBrowser() && mockData) {
+  if (isEnvBrowser() && mockData !== undefined) {
     return mockData;
   }
 

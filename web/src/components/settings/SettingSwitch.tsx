@@ -18,7 +18,9 @@ export const SettingSwitch: React.FC<SettingSwitchProps> = ({
     <Flex>
       <Box flex={1}>
         <Heading fontSize='l'>{title}</Heading>
-        <Text mt={2}>{desc}</Text>
+        <Text mt={2} color='gray.400'>
+          {desc}
+        </Text>
       </Box>
       <Center>
         <Switch size='md' isChecked={value} onChange={handler} />

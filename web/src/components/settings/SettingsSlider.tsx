@@ -28,7 +28,9 @@ export const SettingsSlider: React.FC<SettingsSliderProps> = ({
     <Flex>
       <Box w='70%'>
         <Heading fontSize='l'>{title}</Heading>
-        <Text mt={2}>{desc}</Text>
+        <Text mt={2} color='gray.400'>
+          {desc}
+        </Text>
       </Box>
       <Center w='30%'>
         <Slider defaultValue={value} onChange={handler}>

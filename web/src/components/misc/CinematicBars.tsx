@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
-import { useSetSettings, useSettingsValue } from '../state/settings.state';
+import { useSetSettings, useSettingsValue } from '../../state/settings.state';
 import { Box, Slide } from '@chakra-ui/react';
-import { fetchNui } from '../utils/fetchNui';
-import { useNuiEvent } from '../hooks/useNuiEvent';
+import { fetchNui } from '../../utils/fetchNui';
+import { useNuiEvent } from '../../hooks/useNuiEvent';
 
 // This is the max height both halfs of the cinematic bars can
 // add up to in vh units.

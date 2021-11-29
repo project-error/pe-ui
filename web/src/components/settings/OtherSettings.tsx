@@ -7,18 +7,22 @@ export const OtherSettings: React.FC = () => {
     <Box h='100%' w='100%'>
       <Stack spacing={2}>
         <SettingInput
+          value={0}
           title='Setting Thing'
           desc='This controls settings or smth'
         />
         <SettingInput
+          value={0}
           title='Setting Thing'
           desc='This controls settings or smth'
         />
         <SettingInput
+          value={0}
           title='Setting Thing'
           desc='This controls settings or smth'
         />
         <SettingInput
+          value={0}
           title='Setting Thing'
           desc='This controls settings or smth'
         />

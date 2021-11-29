@@ -1,5 +1,7 @@
 export interface UserSettings {
   cinematicBars: boolean;
   cinematicBarSize: number;
-  healthArmorUpdate: number;
+  screenshotMode: boolean;
+  voiceUpdateInterval: number;
+  healthArmorInterval: number;
 }
