@@ -4,6 +4,10 @@
   "voiceUpdateTime": 150,
   "defaultHUDSettings": {
     "cinematicBars": false,
+    "crosshairEnabled": false,
+    "crosshairColor": "#00ff04",
+    "crosshairSize": 2,
+    "statusCirclesLocation": "bottom-right",
     "cinematicBarSize": 50,
     "healthArmorInterval": 100,
     "voiceUpdateInterval": 100,

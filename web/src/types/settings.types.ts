@@ -8,6 +8,9 @@ export type ValidStatusLocations =
 
 export interface UserSettings {
   cinematicBars: boolean;
+  crosshairColor: string;
+  crosshairSize: number;
+  crosshairEnabled: boolean;
   cinematicBarSize: number;
   screenshotMode: boolean;
   statusCirclesLocation: ValidStatusLocations;

@@ -6,12 +6,13 @@ import {
   Heading,
   Slider,
   SliderFilledTrack,
+  SliderProps,
   SliderThumb,
   SliderTrack,
   Text,
 } from '@chakra-ui/react';
 
-interface SettingsSliderProps {
+interface SettingsSliderProps extends SliderProps {
   title: string;
   desc: string;
   value?: number;
@@ -23,6 +24,7 @@ export const SettingsSlider: React.FC<SettingsSliderProps> = ({
   desc,
   value,
   handler,
+  ...props
 }) => (
   <Box p={5} shadow='md' borderWidth='2px' borderRadius='md'>
     <Flex>
@@ -33,7 +35,7 @@ export const SettingsSlider: React.FC<SettingsSliderProps> = ({
         </Text>
       </Box>
       <Center w='30%'>
-        <Slider defaultValue={value} onChange={handler}>
+        <Slider defaultValue={value} onChange={handler} {...props}>
           <SliderTrack>
             <SliderFilledTrack />
           </SliderTrack>

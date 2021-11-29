@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Stack } from '@chakra-ui/react';
-import { SettingSwitch } from './SettingSwitch';
-import { mergeSettings, useSettings } from '../../state/settings.state';
-import { SettingInput } from './SettingInput';
-import { SettingDropdown } from './SettingDropdown';
-import { ValidStatusLocations } from '../../types/settings.types';
+import { SettingSwitch } from '../components/SettingSwitch';
+import { mergeSettings, useSettings } from '../../../state/settings.state';
+import { SettingInput } from '../components/SettingInput';
+import { SettingDropdown } from '../components/SettingDropdown';
+import { ValidStatusLocations } from '../../../types/settings.types';
 
 export const MainSettings: React.FC = () => {
   const [settings, setSettings] = useSettings();
@@ -57,7 +57,7 @@ export const MainSettings: React.FC = () => {
           handler={handleVoiceIntervalChange}
         />
         <SettingDropdown
-          title='Status Bar Locations'
+          title='Status Circle Location'
           handler={handleStatusLocation}
           desc='This determines the location of the circle status bars.'
           value={settings.statusCirclesLocation}

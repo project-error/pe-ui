@@ -11,7 +11,7 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react';
-import { noop } from '../../utils/misc';
+import { noop } from '../../../utils/misc';
 import { FaChevronDown } from 'react-icons/fa';
 
 interface SettingDropdownProps {

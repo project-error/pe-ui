@@ -10,11 +10,11 @@ import {
   TabPanels,
   Tabs,
 } from '@chakra-ui/react';
-import { useNuiEvent } from '../../hooks/useNuiEvent';
-import { fetchNui } from '../../utils/fetchNui';
-import { MainSettings } from './MainSettings';
-import { SecondarySettings } from './SecondarySettings';
-import { OtherSettings } from './OtherSettings';
+import { useNuiEvent } from '../../../hooks/useNuiEvent';
+import { fetchNui } from '../../../utils/fetchNui';
+import { MainSettings } from '../pages/MainSettings';
+import { SecondarySettings } from '../pages/SecondarySettings';
+import { OtherSettings } from '../pages/OtherSettings';
 
 export const SettingsModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
