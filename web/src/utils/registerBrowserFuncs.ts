@@ -1,8 +1,20 @@
 import { Delay, isEnvBrowser } from './misc';
 import { debugData } from './debugData';
 import { PromptInfo } from '../types/prompt.types';
+import { HudStateAtomParam } from '../state/hud.state';
 
 (window as any).pe = {};
+
+function dispatchUiEvent<T = any>(method: string, data: T) {
+  window.dispatchEvent(
+    new MessageEvent('message', {
+      data: {
+        method,
+        data,
+      },
+    })
+  );
+}
 
 const castWindow = (window as any).pe;
 
@@ -16,6 +28,19 @@ export const registerBrowserFuncs = async () => {
       {
         data,
         action,
+      },
+    ]);
+  };
+
+  castWindow.addCircleItem = () => {
+    debugData<HudStateAtomParam>([
+      {
+        data: {
+          id: 'oxygen',
+          value: 100,
+          iconName: 'FaSwimmer',
+        },
+        action: 'addCircleItem',
       },
     ]);
   };

@@ -5,10 +5,14 @@ import { HealthCircle } from './HealthCircle';
 import { ArmorCircle } from './ArmorCircle';
 import { usePauseActiveValue } from '../../state/base.state';
 import { useSettingsValue } from '../../state/settings.state';
+import { GenericCircleItem } from './GenericCircleItem';
+import { useRecoilValue } from 'recoil';
+import { hudStateListIds } from '../../state/hud.state';
 
 export const CircleHudWrapper: React.FC = () => {
   const pauseActive = usePauseActiveValue();
   const { cinematicBars } = useSettingsValue();
+  const ids = useRecoilValue(hudStateListIds);
 
   return (
     <Box
@@ -20,9 +24,14 @@ export const CircleHudWrapper: React.FC = () => {
       opacity={pauseActive || cinematicBars ? 0 : 1}
     >
       <HStack h='fit-content' w='fit-content'>
-        <HealthCircle />
-        <ArmorCircle />
-        <VoiceCircle />
+        <React.Suspense fallback={<></>}>
+          <HealthCircle />
+          <ArmorCircle />
+          <VoiceCircle />
+          {ids.map(({ ...props }) => (
+            <GenericCircleItem {...props} key={props.id} />
+          ))}
+        </React.Suspense>
       </HStack>
     </Box>
   );

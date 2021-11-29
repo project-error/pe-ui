@@ -20,7 +20,7 @@ export const SettingsModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    fetchNui('requestFocus', isOpen);
+    fetchNui('requestFocus', isOpen, {});
   }, [isOpen]);
 
   useNuiEvent<boolean>('setSettingsVisible', bool => {

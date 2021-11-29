@@ -14,7 +14,7 @@ export const CinematicBars: React.FC = () => {
   const setSettings = useSetSettings();
 
   useEffect(() => {
-    fetchNui('cinematicModeToggle', cinematicBars);
+    fetchNui('cinematicModeToggle', cinematicBars, {});
   }, [cinematicBars]);
 
   const evenSize = useMemo(() => {

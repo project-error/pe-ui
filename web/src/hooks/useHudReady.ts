@@ -3,6 +3,6 @@ import { fetchNui } from '../utils/fetchNui';
 
 export const useHudReady = () => {
   useEffect(() => {
-    fetchNui('nuiReadyForMessages');
+    fetchNui('nuiReadyForMessages', undefined, {});
   }, []);
 };

@@ -1,4 +1,11 @@
-import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  atom,
+  atomFamily,
+  SerializableParam,
+  useRecoilValue,
+  useSetRecoilState,
+} from 'recoil';
+import { useCallback } from 'react';
 
 const hudState = {
   health: atom({
@@ -10,6 +17,27 @@ const hudState = {
     default: 100,
   }),
 };
+
+export interface HudStateAtomParam {
+  id: string;
+  iconColor?: string;
+  iconName: string;
+  trackColor?: string;
+  color?: string;
+  min?: number;
+  max?: number;
+  value?: number;
+}
+
+export const hudStateListIds = atom<HudStateAtomParam[]>({
+  key: 'hudCircleAtomsIDs',
+  default: [],
+});
+
+export const circleHudValues = atomFamily<number, string>({
+  key: 'hudCircleAtoms',
+  default: 100,
+});
 
 export const useHealthValue = () => useRecoilValue(hudState.health);
 export const useSetHealth = () => useSetRecoilState(hudState.health);

@@ -111,3 +111,33 @@ CreateThread(function()
     Wait(500)
   end
 end)
+
+--- @class AddCircleOpts
+--- @field id string
+--- @field iconColor string|nil
+--- @field iconName string
+--- @field trackColor string|nil
+--- @field color string|nil
+--- @field min number|nil
+--- @field max number|nil
+--- @field value number|nil
+
+--- Adds a new circleHud based on passed opts
+--- @param opts AddCircleOpts
+local function addCircleHudItem(opts)
+  SendReactMessage('addCircleItem', opts)
+end
+
+exports('addCircleHudItem', addCircleHudItem)
+
+--- @class SetCircleHudValueOpts
+--- @field value number
+--- @field id string
+
+--- Update an existing circleHud with a new value
+--- @param opts SetCircleHudValueOpts
+local function setCircleHudValue(opts)
+  SendReactMessage('setItemValue', opts)
+end
+
+exports('setCircleHudValue', setCircleHudValue)

@@ -28,7 +28,7 @@ export const TextPromptProvider: React.FC = ({ children }) => {
   const [promptInfo, setPromptInfo] = useState<PromptInfo>(defaultPromptValue);
 
   useEffect(() => {
-    fetchNui('requestFocus', promptVisible);
+    fetchNui('requestFocus', promptVisible, {});
   }, [promptVisible]);
 
   const openPrompt = useCallback((promptInfo: PromptInfo) => {
