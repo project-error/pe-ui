@@ -3,6 +3,8 @@ import { Box, Stack } from '@chakra-ui/react';
 import { SettingSwitch } from './SettingSwitch';
 import { mergeSettings, useSettings } from '../../state/settings.state';
 import { SettingInput } from './SettingInput';
+import { SettingDropdown } from './SettingDropdown';
+import { ValidStatusLocations } from '../../types/settings.types';
 
 export const MainSettings: React.FC = () => {
   const [settings, setSettings] = useSettings();
@@ -22,6 +24,14 @@ export const MainSettings: React.FC = () => {
   const handleVoiceIntervalChange = (ms: number) => {
     setSettings(prevSettings =>
       mergeSettings(prevSettings, { healthArmorInterval: ms })
+    );
+  };
+
+  const handleStatusLocation = (newLocation: string) => {
+    setSettings(prevSettings =>
+      mergeSettings(prevSettings, {
+        statusCirclesLocation: newLocation as ValidStatusLocations,
+      })
     );
   };
 
@@ -46,10 +56,19 @@ export const MainSettings: React.FC = () => {
           value={settings.voiceUpdateInterval}
           handler={handleVoiceIntervalChange}
         />
-        <SettingSwitch
-          title='Setting Thing'
-          desc='This controls settings or smth'
-          value={false}
+        <SettingDropdown
+          title='Status Bar Locations'
+          handler={handleStatusLocation}
+          desc='This determines the location of the circle status bars.'
+          value={settings.statusCirclesLocation}
+          options={[
+            'bottom',
+            'bottom-left',
+            'bottom-right',
+            'top',
+            'top-left',
+            'top-right',
+          ]}
         />
       </Stack>
     </Box>

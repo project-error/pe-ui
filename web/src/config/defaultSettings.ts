@@ -4,6 +4,7 @@ import { UserSettings } from '../types/settings.types';
 export const defaultSettings: UserSettings = {
   cinematicBars: false,
   screenshotMode: false,
+  statusCirclesLocation: 'bottom-right',
   voiceUpdateInterval: 100,
   cinematicBarSize: 50,
   healthArmorInterval: 100,
