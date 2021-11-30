@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react';
 import {
   CircularProgress,
   CircularProgressLabel,
+  CircularProgressProps,
   Fade,
   Icon,
 } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
-import { CircularProgressProps } from '@chakra-ui/progress/dist/types/circular-progress';
-import { Token } from '@chakra-ui/styled-system/dist/types/utils';
-import * as CSS from 'csstype';
 
 interface CircleItemProps extends CircularProgressProps {
   icon: IconType;
-  iconColor: Token<CSS.Property.Color, 'colors'>;
+  iconColor: any;
   value: number;
   hideWhenZero?: boolean;
 }
