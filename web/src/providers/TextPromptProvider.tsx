@@ -10,6 +10,7 @@ import React, {
 import { fetchNui } from '../utils/fetchNui';
 import { useNuiEvent } from '../hooks/useNuiEvent';
 import { PromptCtxValue, PromptInfo } from '../types/prompt.types';
+import { useAlertProvider } from './ToastProvider';
 
 const TextPromptCtx = createContext<PromptCtxValue | null>(null);
 
@@ -27,6 +28,7 @@ const defaultPromptValue: PromptInfo = {
 export const TextPromptProvider: React.FC = ({ children }) => {
   const [promptVisible, setPromptVisible] = useState(false);
   const [promptInfo, setPromptInfo] = useState<PromptInfo>(defaultPromptValue);
+  const { addToast } = useAlertProvider();
 
   useEffect(() => {
     fetchNui('requestFocus', promptVisible, {});
@@ -39,19 +41,41 @@ export const TextPromptProvider: React.FC = ({ children }) => {
 
   const handleSubmitPrompt = useCallback(
     (promptId: string, content: string) => {
-      fetchNui(`promptNuiResp-${promptId}`, ['submitted', content], {});
+      if (promptInfo.runValidator) {
+        const isValid = promptInfo.runValidator(content);
+
+        if (!isValid)
+          return addToast({
+            message: 'Invalid settings schema detected!',
+            status: 'error',
+          });
+      }
+
+      if (promptInfo.shouldEmitEvent) {
+        fetchNui(`promptNuiResp-${promptId}`, ['submitted', content], {});
+      }
       setPromptVisible(false);
+      if (promptInfo.onSubmit) promptInfo.onSubmit(content);
+
+      setPromptInfo(defaultPromptValue);
     },
-    []
+    [addToast, promptInfo]
   );
 
-  const handleClosePrompt = useCallback((promptId: string) => {
-    setPromptVisible(false);
-    setPromptInfo(defaultPromptValue);
-    fetchNui(`promptNuiResp-${promptId}`, ['closed', null], {});
-  }, []);
+  const handleClosePrompt = useCallback(
+    (promptId: string) => {
+      setPromptVisible(false);
+      setPromptInfo(defaultPromptValue);
+      if (promptInfo.shouldEmitEvent) {
+        fetchNui(`promptNuiResp-${promptId}`, ['closed', null], {});
+      }
+    },
+    [promptInfo.shouldEmitEvent]
+  );
 
-  useNuiEvent<PromptInfo>('openPrompt', openPrompt);
+  useNuiEvent<PromptInfo>('openPrompt', data => {
+    openPrompt({ ...data, shouldEmitEvent: true });
+  });
 
   useNuiEvent<string>('closePrompt', handleClosePrompt);
 

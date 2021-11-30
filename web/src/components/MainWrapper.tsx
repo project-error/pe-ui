@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 import { TextPrompt } from './misc/TextPrompt';
-import { ToastProvider } from '../providers/ToastProvider';
 import { SettingsModal } from '../features/settings/components/SettingsModal';
 import { CinematicBars } from './misc/CinematicBars';
 import { CircleHudWrapper } from './player/CircleHudWrapper';
@@ -18,16 +17,14 @@ const MainWrapper: React.FC = () => {
   return (
     <React.Suspense fallback={<></>}>
       <ScreenshotModeManager>
-        <ToastProvider>
-          <CinematicBars />
-          <CrosshairManager />
-          <ProgressBarWrapper />
-          <Box h='100%' w='100%' p={4} bg='none'>
-            <TextPrompt />
-            <SettingsModal />
-            <CircleHudWrapper />
-          </Box>
-        </ToastProvider>
+        <CinematicBars />
+        <CrosshairManager />
+        <ProgressBarWrapper />
+        <Box h='100%' w='100%' p={4} bg='none'>
+          <TextPrompt />
+          <SettingsModal />
+          <CircleHudWrapper />
+        </Box>
       </ScreenshotModeManager>
     </React.Suspense>
   );

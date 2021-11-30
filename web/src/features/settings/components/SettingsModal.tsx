@@ -34,6 +34,7 @@ export const SettingsModal: React.FC = () => {
 
   return (
     <Modal
+      id='settings-modal'
       isOpen={isOpen}
       onClose={handleClose}
       closeOnEsc={true}

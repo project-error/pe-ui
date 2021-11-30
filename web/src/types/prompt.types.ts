@@ -9,6 +9,9 @@ export interface PromptCtxValue {
 export interface PromptInfo {
   placeholder?: string;
   description: string;
+  runValidator?: (content: string) => boolean;
+  onSubmit?: (val: string) => void;
+  shouldEmitEvent?: boolean;
   id: string;
   title: string;
   isClosable?: boolean;

@@ -66,6 +66,7 @@ export const AlertDialogProvider: React.FC = ({ children }) => {
       }}
     >
       <AlertDialog
+        isCentered
         leastDestructiveRef={cancelRef}
         isOpen={visible}
         onClose={handleClose}

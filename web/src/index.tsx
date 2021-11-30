@@ -9,6 +9,7 @@ import { RecoilRoot } from 'recoil';
 import { registerBrowserFuncs } from './utils/registerBrowserFuncs';
 import { isEnvBrowser } from './utils/misc';
 import { AlertDialogProvider } from './providers/AlertDialogProvider';
+import { ToastProvider } from './providers/ToastProvider';
 
 // Register window helper functions in browser
 // to replicate lua behavior
@@ -27,11 +28,13 @@ ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
       <ChakraProvider theme={customTheme}>
-        <TextPromptProvider>
-          <AlertDialogProvider>
-            <MainWrapper />
-          </AlertDialogProvider>
-        </TextPromptProvider>
+        <AlertDialogProvider>
+          <ToastProvider>
+            <TextPromptProvider>
+              <MainWrapper />
+            </TextPromptProvider>
+          </ToastProvider>
+        </AlertDialogProvider>
       </ChakraProvider>
     </RecoilRoot>
   </React.StrictMode>,

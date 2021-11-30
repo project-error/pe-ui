@@ -7864,6 +7864,10 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+jsonschema@tdegrunt/jsonschema:
+  version "1.4.0"
+  resolved "https://codeload.github.com/tdegrunt/jsonschema/tar.gz/6f6512981327c20802852fa32fa3dd4f315f7ce1"
+
 jsprim@^1.2.2:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/jsprim/-/jsprim-1.4.1.tgz#313e66bc1e5cc06e438bc1b7499c2e5c56acb6a2"
