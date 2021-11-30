@@ -38,9 +38,9 @@ export const SettingDropdown: React.FC<SettingDropdownProps> = ({
             {desc}
           </Text>
         </Box>
-        <Center w='25%'>
+        <Center>
           <Menu>
-            <MenuButton as={Button} rightIcon={<FaChevronDown />}>
+            <MenuButton as={Button} rightIcon={<FaChevronDown />} width='100%'>
               {value}
             </MenuButton>
             <MenuList>

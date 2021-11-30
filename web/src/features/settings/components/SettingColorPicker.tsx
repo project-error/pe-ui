@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Center, Flex, Heading, Input, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Heading, Text } from '@chakra-ui/react';
 import { noop } from '../../../utils/misc';
 
 interface SettingColorPickerProps {

@@ -41,7 +41,7 @@ export const SettingsModal: React.FC = () => {
       isCentered
       closeOnOverlayClick={false}
     >
-      <ModalContent minH={400} py={6}>
+      <ModalContent minH={400} py={6} bgColor={'gray.800'}>
         <ModalCloseButton />
         <ModalBody>
           <Tabs isFitted variant='line'>
