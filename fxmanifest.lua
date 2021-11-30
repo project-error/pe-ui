@@ -20,7 +20,7 @@ client_scripts {
   "client/**/*"
 }
 
-server_script "server/update.lua"
+server_script "update/main.js"
 
 files {
   'config.json',
