@@ -18,7 +18,7 @@ registerBrowserFuncs();
 if (isEnvBrowser() && process.env.NODE_ENV === 'development') {
   const root = document.getElementById('root');
 
-  root!.style.backgroundImage = 'url("./build/assets/img/p.png")';
+  root!.style.backgroundImage = 'url("build/assets/img/p.png")';
   root!.style.backgroundSize = 'cover';
   root!.style.backgroundRepeat = 'no-repeat';
   root!.style.backgroundPosition = 'center';
