@@ -48,7 +48,7 @@ export const TextPrompt: React.FC = () => {
     >
       <ModalOverlay />
       <form onSubmit={handleSubmit}>
-        <ModalContent>
+        <ModalContent bgColor={'gray.800'}>
           <ModalHeader>{promptInfo.title}</ModalHeader>
           {promptInfo?.isClosable && <ModalCloseButton />}
           <ModalBody pb={3}>

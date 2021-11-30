@@ -4,6 +4,7 @@ import {
   selector,
   useRecoilState,
   useRecoilValue,
+  useResetRecoilState,
   useSetRecoilState,
 } from 'recoil';
 import { defaultSettings } from '../config/defaultSettings';
@@ -70,3 +71,5 @@ const currentSettings = atom<UserSettings>({
 export const useSettings = () => useRecoilState(currentSettings);
 export const useSettingsValue = () => useRecoilValue(currentSettings);
 export const useSetSettings = () => useSetRecoilState(currentSettings);
+
+export const useResetSettings = () => useResetRecoilState(currentSettings);

@@ -2,24 +2,30 @@ import { Delay, isEnvBrowser } from './misc';
 import { debugData } from './debugData';
 import { PromptInfo } from '../types/prompt.types';
 import { HudStateAtomParam } from '../state/hud.state';
+import { AddToastOptions, ToastOpts } from '../providers/ToastProvider';
+import { ToastId } from '@chakra-ui/react';
 
 (window as any).pe = {};
 
 const castWindow = (window as any).pe;
+
+function dispatchNuiEvent<T = any>(action: string, data: T) {
+  window.dispatchEvent(
+    new MessageEvent('message', {
+      data: {
+        action,
+        data,
+      },
+    })
+  );
+}
 
 // Just a simple function that will attach useful window functions whenever
 // in browser (makes it easy to mock Lua actions).
 export const registerBrowserFuncs = async () => {
   if (!isEnvBrowser()) return;
 
-  castWindow.dispatchNuiEvent = (action: string, data: any) => {
-    debugData([
-      {
-        data,
-        action,
-      },
-    ]);
-  };
+  castWindow.dispatchNuiEvent = dispatchNuiEvent;
 
   castWindow.addCircleItem = () => {
     debugData<HudStateAtomParam>([
@@ -35,35 +41,115 @@ export const registerBrowserFuncs = async () => {
   };
 
   castWindow.openSettings = (bool: boolean) => {
-    castWindow.dispatchNuiEvent('setSettingsVisible', bool);
+    dispatchNuiEvent('setSettingsVisible', bool);
   };
 
   castWindow.setArmor = (amount: number) => {
-    castWindow.dispatchNuiEvent('setArmor', amount);
+    dispatchNuiEvent('setArmor', amount);
+  };
+
+  castWindow.testNotifications = async () => {
+    dispatchNuiEvent<AddToastOptions>('addToast', {
+      message: 'This is my toast description',
+      position: 'top-right',
+      duration: 5000,
+      status: 'success',
+    });
+
+    dispatchNuiEvent<AddToastOptions>('addToast', {
+      message: 'This is my toast description',
+      title: 'Title test',
+      position: 'top-left',
+      duration: 5000,
+      status: 'success',
+    });
+
+    dispatchNuiEvent<AddToastOptions>('addToast', {
+      message: 'This is my toast description',
+      title: 'Title test',
+      position: 'top',
+      duration: 5000,
+      status: 'error',
+    });
+
+    dispatchNuiEvent<AddToastOptions>('addToast', {
+      message: 'Error test',
+      title: 'Title test',
+      position: 'top-right',
+      duration: 5000,
+      status: 'error',
+    });
+
+    dispatchNuiEvent<AddToastOptions>('addToast', {
+      message: 'warning test',
+      title: 'Title test',
+      position: 'bottom-right',
+      duration: 5000,
+      status: 'warning',
+    });
+
+    await Delay(3000);
+
+    dispatchNuiEvent<AddToastOptions>('addToast', {
+      message: 'Error test',
+      title: 'Title test',
+      position: 'top-left',
+      duration: 3000,
+      status: 'info',
+    });
+
+    await Delay(1000);
+
+    dispatchNuiEvent<AddToastOptions>('addToast', {
+      message: 'Nice test',
+      title: 'Title test',
+      position: 'bottom-left',
+      duration: 3000,
+      status: 'info',
+    });
+  };
+
+  castWindow.testPersistentNotis = () => {
+    dispatchNuiEvent<ToastOpts>('addPersistentToast', {
+      id: 'myPersistentNoti',
+      message: 'Persistent notification test',
+      position: 'top-right',
+    });
+
+    dispatchNuiEvent<ToastOpts>('addPersistentToast', {
+      id: 'myPersistentNoti2',
+      message: 'Persistent notification test',
+      position: 'top-left',
+    });
+  };
+
+  castWindow.clearPersistentNotis = () => {
+    dispatchNuiEvent<ToastId>('clearPersistentToast', 'myPersistentNoti');
+    dispatchNuiEvent<ToastId>('clearPersistentToast', 'myPersistentNoti2');
   };
 
   castWindow.setHealth = (amount: number) => {
-    castWindow.dispatchNuiEvent('setHealth', amount);
+    dispatchNuiEvent('setHealth', amount);
   };
 
   castWindow.toggleOnVoice = (toggledOn: boolean) => {
-    castWindow.dispatchNuiEvent('setIsTalking', toggledOn);
+    dispatchNuiEvent('setIsTalking', toggledOn);
   };
 
   castWindow.switchVoiceMode = (voiceMode: number) => {
-    castWindow.dispatchNuiEvent('setVoiceRange', voiceMode);
+    dispatchNuiEvent('setVoiceRange', voiceMode);
   };
 
   castWindow.toggleCMode = (bool: boolean) => {
-    castWindow.dispatchNuiEvent('cinematicModeToggle', bool);
+    dispatchNuiEvent('cinematicModeToggle', bool);
   };
 
   castWindow.openPrompt = (promptData: PromptInfo) => {
-    castWindow.dispatchNuiEvent('openPrompt', promptData);
+    dispatchNuiEvent('openPrompt', promptData);
   };
 
   castWindow.closePrompt = (promptId: string) => {
-    castWindow.dispatchNuiEvent('closePrompt', promptId);
+    dispatchNuiEvent('closePrompt', promptId);
   };
 
   await Delay(100);

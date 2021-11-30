@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+
 import { fetchNui } from '../utils/fetchNui';
 import { useNuiEvent } from '../hooks/useNuiEvent';
 import { PromptCtxValue, PromptInfo } from '../types/prompt.types';
@@ -38,7 +39,7 @@ export const TextPromptProvider: React.FC = ({ children }) => {
 
   const handleSubmitPrompt = useCallback(
     (promptId: string, content: string) => {
-      fetchNui(`promptNuiResp-${promptId}`, ['submitted', content]);
+      fetchNui(`promptNuiResp-${promptId}`, ['submitted', content], {});
       setPromptVisible(false);
     },
     []
@@ -47,7 +48,7 @@ export const TextPromptProvider: React.FC = ({ children }) => {
   const handleClosePrompt = useCallback((promptId: string) => {
     setPromptVisible(false);
     setPromptInfo(defaultPromptValue);
-    fetchNui(`promptNuiResp-${promptId}`, ['closed', null]);
+    fetchNui(`promptNuiResp-${promptId}`, ['closed', null], {});
   }, []);
 
   useNuiEvent<PromptInfo>('openPrompt', openPrompt);

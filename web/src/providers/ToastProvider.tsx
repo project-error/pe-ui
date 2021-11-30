@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useContext } from 'react';
 import { ToastId, ToastOptions, useToast } from '@chakra-ui/react';
 import { useNuiEvent } from '../hooks/useNuiEvent';
 
-interface ToastOpts {
+export interface ToastOpts {
   position?: ToastOptions['position'];
   status?: 'success' | 'error' | 'warning' | 'info';
   id: ToastOptions['id'];
@@ -10,7 +10,7 @@ interface ToastOpts {
   title?: string;
 }
 
-interface AddToastOptions {
+export interface AddToastOptions {
   position?: ToastOptions['position'];
   status?: 'success' | 'error' | 'warning' | 'info';
   message: string;

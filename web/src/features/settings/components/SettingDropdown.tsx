@@ -32,13 +32,13 @@ export const SettingDropdown: React.FC<SettingDropdownProps> = ({
   return (
     <Box p={5} shadow='md' borderWidth='2px' borderRadius='md'>
       <Flex>
-        <Box w='85%'>
+        <Box w='75%'>
           <Heading fontSize='l'>{title}</Heading>
           <Text mt={2} color='gray.400'>
             {desc}
           </Text>
         </Box>
-        <Center>
+        <Center w='25%' justifyContent='flex-end'>
           <Menu>
             <MenuButton as={Button} rightIcon={<FaChevronDown />} width='100%'>
               {value}

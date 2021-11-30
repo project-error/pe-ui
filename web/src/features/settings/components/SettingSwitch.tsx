@@ -16,13 +16,13 @@ export const SettingSwitch: React.FC<SettingSwitchProps> = ({
 }) => (
   <Box p={5} shadow='md' borderWidth='2px' borderRadius='md'>
     <Flex>
-      <Box flex={1}>
+      <Box flex={1} w='75%'>
         <Heading fontSize='l'>{title}</Heading>
         <Text mt={2} color='gray.400'>
           {desc}
         </Text>
       </Box>
-      <Center>
+      <Center w='25%' justifyContent='flex-end'>
         <Switch size='md' isChecked={value} onChange={handler} />
       </Center>
     </Flex>

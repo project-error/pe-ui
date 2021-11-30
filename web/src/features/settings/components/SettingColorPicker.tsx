@@ -17,13 +17,13 @@ export const SettingColorPicker: React.FC<SettingColorPickerProps> = ({
 }) => (
   <Box p={5} shadow='md' borderWidth='2px' borderRadius='md'>
     <Flex>
-      <Box w='85%'>
+      <Box w='75%'>
         <Heading fontSize='l'>{title}</Heading>
         <Text mt={2} color='gray.400'>
           {desc}
         </Text>
       </Box>
-      <Center w='15%'>
+      <Center w='25%' justifyContent='flex-end'>
         <input
           onChange={e => handler(e.target.value)}
           defaultValue={value}

@@ -12,9 +12,9 @@ import {
 } from '@chakra-ui/react';
 import { useNuiEvent } from '../../../hooks/useNuiEvent';
 import { fetchNui } from '../../../utils/fetchNui';
-import { MainSettings } from '../pages/MainSettings';
-import { SecondarySettings } from '../pages/SecondarySettings';
-import { OtherSettings } from '../pages/OtherSettings';
+import { VisualSettings } from '../pages/VisualSettings';
+import { AdditionalSettings } from '../pages/AdditionalSettings';
+import { PerformanceSettings } from '../pages/PerformanceSettings';
 
 export const SettingsModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,19 +46,19 @@ export const SettingsModal: React.FC = () => {
         <ModalBody>
           <Tabs isFitted variant='line'>
             <TabList>
-              <Tab>Main Settings</Tab>
-              <Tab>Secondary Settings</Tab>
-              <Tab>Other Settings</Tab>
+              <Tab>Visual Settings</Tab>
+              <Tab>Performance Settings</Tab>
+              <Tab>Additional Settings</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
-                <MainSettings />
+                <VisualSettings />
               </TabPanel>
               <TabPanel>
-                <SecondarySettings />
+                <PerformanceSettings />
               </TabPanel>
               <TabPanel>
-                <OtherSettings />
+                <AdditionalSettings />
               </TabPanel>
             </TabPanels>
           </Tabs>

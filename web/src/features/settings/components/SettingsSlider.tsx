@@ -28,13 +28,13 @@ export const SettingsSlider: React.FC<SettingsSliderProps> = ({
 }) => (
   <Box p={5} shadow='md' borderWidth='2px' borderRadius='md'>
     <Flex>
-      <Box w='70%'>
+      <Box w='75%'>
         <Heading fontSize='l'>{title}</Heading>
         <Text mt={2} color='gray.400'>
           {desc}
         </Text>
       </Box>
-      <Center w='30%'>
+      <Center w='25%' justifyContent='flex-end'>
         <Slider defaultValue={value} onChange={handler} {...props}>
           <SliderTrack>
             <SliderFilledTrack />
