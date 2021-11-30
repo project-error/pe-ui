@@ -1,24 +1,10 @@
 import React from 'react';
 import { Box, Stack } from '@chakra-ui/react';
-import { SettingsSlider } from '../components/SettingsSlider';
-import { SettingSwitch } from '../components/SettingSwitch';
 import { mergeSettings, useSettings } from '../../../state/settings.state';
 import { SettingInput } from '../components/SettingInput';
 
 export const PerformanceSettings: React.FC = () => {
   const [settings, setSettings] = useSettings();
-
-  const handleCinematicToggle = (bool: boolean) => {
-    setSettings(prevSettings =>
-      mergeSettings(prevSettings, { cinematicBars: bool })
-    );
-  };
-
-  const handleBlackbarSize = (val: number) => {
-    setSettings(prevSettings =>
-      mergeSettings(prevSettings, { cinematicBarSize: val })
-    );
-  };
 
   const handleArmorIntervalChange = (ms: number) => {
     setSettings(prevSettings =>

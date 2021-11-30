@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Stack } from '@chakra-ui/react';
 import { SettingSwitch } from '../components/SettingSwitch';
 import { mergeSettings, useSettings } from '../../../state/settings.state';
-import { SettingInput } from '../components/SettingInput';
 import { SettingDropdown } from '../components/SettingDropdown';
 import { ValidStatusLocations } from '../../../types/settings.types';
 import { SettingsSlider } from '../components/SettingsSlider';

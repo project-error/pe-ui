@@ -14,7 +14,7 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
-import { EditIcon } from '@chakra-ui/icons';
+import { MdEdit } from 'react-icons/md';
 import { usePromptCtx } from '../../providers/TextPromptProvider';
 
 export const TextPrompt: React.FC = () => {
@@ -59,7 +59,7 @@ export const TextPrompt: React.FC = () => {
               <InputLeftElement
                 pointerEvents='none'
                 fontSize='1.2em'
-                children={<EditIcon />}
+                children={<MdEdit />}
               />
               <Input
                 ref={initRef}

@@ -5,8 +5,6 @@ import {
   Center,
   Flex,
   Heading,
-  Input,
-  SliderProps,
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
