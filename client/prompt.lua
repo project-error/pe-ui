@@ -2,8 +2,7 @@
 local promptIsOpen = false
 
 --[[
-table object:
-  interface PromptInfo {
+interface PromptInfo {
   placeholder: string;
   description: string;
   id: string;
@@ -26,8 +25,7 @@ local function startPrompt(promptTable)
 
   promptIsOpen = true
 
-  RegisterNuiCallbackType(cbStr)
-  local eventData = AddEventHandler('__cfx_nui:' .. cbStr, function(data, cb)
+  local eventData = RegisterNUICallback(cbStr, function(data, cb)
     p:resolve(data)
     promptIsOpen = false
     cb({})
