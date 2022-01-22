@@ -17,7 +17,7 @@
     "@types/react-dom": "^17.0.11",
     "framer-motion": "^4",
     "jsonschema": "tdegrunt/jsonschema",
-    "node-fetch": "^3.1.0",
+    "node-fetch": "^3.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
