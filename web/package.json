@@ -27,9 +27,9 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "cross-env PUBLIC_URL=/ craco start",
     "start:game": "cross-env IN_GAME_DEV=1 craco start",
-    "build": "craco build",
+    "build": "rimraf build && craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -52,8 +52,9 @@
     ]
   },
   "devDependencies": {
-    "craco": "^0.0.3",
+    "@craco/craco": "^6.4.3",
     "cross-env": "^7.0.3",
-    "prettier": "^2.5.0"
+    "prettier": "^2.5.0",
+    "rimraf": "^3.0.2"
   }
 }
