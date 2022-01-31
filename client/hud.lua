@@ -91,7 +91,7 @@ CreateThread(function()
       debugPrint('Voice activated > false')
       wasTalking = false
     end
-    Wait(not USER_SETTINGS and ResourceConfig.voiceUpdateTime or USER_SETTINGS.voiceUpdateTime)
+    Wait(USER_SETTINGS?.voiceUpdateTime or ResourceConfig.voiceUpdateTime)
   end
 end)
 
@@ -118,7 +118,7 @@ CreateThread(function()
       end
     end
 
-    Wait(not USER_SETTINGS and ResourceConfig.defaultHUDSettings.healthArmorUpdate or USER_SETTINGS.healthArmorInterval)
+    Wait(USER_SETTINGS?.healthArmorInterval or ResourceConfig.defaultHUDSettings.healthArmorUpdate)
   end
 end)
 
