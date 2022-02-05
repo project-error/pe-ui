@@ -56,7 +56,15 @@ export const CircleItem: React.FC<CircleItemProps> = ({
         {...props}
       >
         <CircularProgressLabel>
-          {<Icon as={icon} w={5} h={5} color={iconColor} />}
+          {
+            <Icon
+              as={icon}
+              w={5}
+              h={5}
+              color={iconColor}
+              verticalAlign='middle'
+            />
+          }
         </CircularProgressLabel>
       </CircularProgress>
     </Fade>
