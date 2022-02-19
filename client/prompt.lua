@@ -30,9 +30,9 @@ local function startPrompt(promptTable)
 
     p:resolve(resp)
     promptIsOpen = false
-    cb({ body = json.encode({}) })
+    cb({ body = '{}' })
 
-    UnregisterRawNuiCallback(`promptResp-${props.id}`);
+    UnregisterRawNuiCallback(`promptNuiResp-${props.id}`);
   end)
 
   local result = Citizen.Await(p)
