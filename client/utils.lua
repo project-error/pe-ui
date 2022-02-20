@@ -41,3 +41,10 @@ function errorPrint(...)
   local finalMsg = msgTemplate:format(currentResourceName, appendStr)
   print(finalMsg)
 end
+
+function locateTableItem(table, value)
+  for i = 1, #table do
+    if table[i] == value then return table[i] end
+  end
+  return nil
+end

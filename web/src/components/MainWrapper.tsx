@@ -9,6 +9,7 @@ import { useHudReady } from '../hooks/useHudReady';
 import { ProgressBarWrapper } from './progress/ProgressBarWrapper';
 import { ScreenshotModeManager } from './misc/ScreenshotModeManager';
 import { CrosshairManager } from './crosshair/CrosshairManager';
+import MenuWrapper from './menu/Menu';
 
 const MainWrapper: React.FC = () => {
   useHudListener();
@@ -20,6 +21,7 @@ const MainWrapper: React.FC = () => {
         <CinematicBars />
         <CrosshairManager />
         <ProgressBarWrapper />
+        <MenuWrapper />
         <Box h='100%' w='100%' p={4} bg='none'>
           <TextPrompt />
           <SettingsModal />
