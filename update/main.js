@@ -3,7 +3,7 @@ const semver = require("semver");
 const { messageTemplates } = require("./msgTemplates");
 
 const GITHUB_USER = "project-error";
-const REPO_NAME = "npwd";
+const REPO_NAME = "pe-ui";
 const DEFAULT_BRANCH = "master";
 
 const CURRENT_RESOURCE_NAME = GetCurrentResourceName();
