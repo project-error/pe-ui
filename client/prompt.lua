@@ -11,8 +11,7 @@ table object:
   isClosable?: boolean;
 }
 ]]
----@param promptTable
----@param cb function -- Will respond with either
+---@param promptTable table
 ---
 --- NOTE: Need to handle an export spam triggering many prompts
 local function startPrompt(promptTable)
@@ -26,25 +25,20 @@ local function startPrompt(promptTable)
 
   promptIsOpen = true
 
-  RegisterNuiCallbackType(cbStr)
-  local eventData = AddEventHandler('__cfx_nui:' .. cbStr, function(data, cb)
-    p:resolve(data)
+  RegisterRawNuiCallback(cbStr, function(data, cb)
+    local resp = json.decode(data.body)
+
+    p:resolve(resp)
     promptIsOpen = false
-    cb({})
+    cb({ body = '{}' })
+
+    UnregisterRawNuiCallback(`promptNuiResp-${props.id}`);
   end)
 
   local result = Citizen.Await(p)
-  -- TODO: This causes a memory leak at the current moment
-  -- as the RegisteredType is never cleaned up from the ResourceUI
-  -- container in cpp. Feature pending
 
-  -- Before we remove the event handler we need to copy the data
-  -- otherwise we won't get a proper response.
-  local resultCopy = result
-
-  RemoveEventHandler(eventData)
   -- Returns two results as ['closed' | 'submitted', content | null]
-  return resultCopy[1], resultCopy[2]
+  return result[1], result[2]
 end
 
 exports('startPrompt', startPrompt)
