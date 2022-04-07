@@ -31,7 +31,7 @@ export const CinematicBars: React.FC = () => {
     <Box
       position='absolute'
       h='100vh'
-      zIndex={999}
+      zIndex={1}
       w='100%'
       display='flex'
       justifyContent='space-between'

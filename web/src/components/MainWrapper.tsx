@@ -18,16 +18,16 @@ const MainWrapper: React.FC = () => {
   return (
     <React.Suspense fallback={<></>}>
       <ScreenshotModeManager>
-        <CinematicBars />
         <CrosshairManager />
-        <ProgressBarWrapper />
         <MenuWrapper />
+        <ProgressBarWrapper />
         <Box h='100%' w='100%' p={4} bg='none'>
           <TextPrompt />
           <SettingsModal />
           <CircleHudWrapper />
         </Box>
       </ScreenshotModeManager>
+      <CinematicBars />
     </React.Suspense>
   );
 };

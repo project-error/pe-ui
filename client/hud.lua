@@ -31,6 +31,7 @@ end
 
 RegisterNUICallback('userSettingsUpdated', function(userSettings, cb)
   USER_SETTINGS = userSettings
+  print(userSettings)
   cb({})
 end)
 
@@ -91,7 +92,7 @@ CreateThread(function()
       debugPrint('Voice activated > false')
       wasTalking = false
     end
-    Wait(USER_SETTINGS?.voiceUpdateTime or ResourceConfig.voiceUpdateTime)
+    Wait(not USER_SETTINGS and ResourceConfig.voiceUpdateTime)
   end
 end)
 
@@ -118,7 +119,7 @@ CreateThread(function()
       end
     end
 
-    Wait(USER_SETTINGS?.healthArmorInterval or ResourceConfig.defaultHUDSettings.healthArmorUpdate)
+    Wait(not USER_SETTINGS and ResourceConfig.defaultHUDSettings.healthArmorUpdate)
   end
 end)
 

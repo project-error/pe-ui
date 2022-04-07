@@ -65,10 +65,10 @@ const MenuWrapper: React.FC = () => {
     await fetchNui('onMenuItemClick', item);
   };
 
-  const handleCloseMenu = async () => {
-    setIsOpen(false);
+  const handleCloseMenu = () => {
+    fetchNui('onCloseMenu');
     setMenu(null);
-    await fetchNui('onCloseMenu');
+    setIsOpen(false);
   };
 
   useNuiEvent<MenuProps>('openMenu', data => {
@@ -77,8 +77,8 @@ const MenuWrapper: React.FC = () => {
   });
 
   useNuiEvent('closeMenu', () => {
-    setIsOpen(false);
     setMenu(null);
+    setIsOpen(false);
   });
 
   console.log(menu?.title);
@@ -90,6 +90,7 @@ const MenuWrapper: React.FC = () => {
       w='100%'
       justifyContent='center'
       display='flex'
+      zIndex={2}
       alignItems='center'
     >
       {isOpen && menu && (
@@ -127,6 +128,7 @@ const MenuWrapper: React.FC = () => {
               {menu.items &&
                 menu.items.map(item => (
                   <Box
+                    cursor='pointer'
                     onClick={() => handleItemClick(item)}
                     background='gray.900'
                     w={250}
