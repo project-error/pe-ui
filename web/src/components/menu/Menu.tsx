@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import {
   Box,
-  Button,
-  Center,
-  Heading,
   IconButton,
-  Menu,
-  MenuDivider,
-  MenuItem,
-  MenuList,
   Text,
 } from '@chakra-ui/react';
 import { useNuiEvent } from '../../hooks/useNuiEvent';
