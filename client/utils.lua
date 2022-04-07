@@ -41,3 +41,20 @@ function errorPrint(...)
   local finalMsg = msgTemplate:format(currentResourceName, appendStr)
   print(finalMsg)
 end
+
+function locateMenuTableItem(table, value)
+  for i = 1, #table do
+    if table[i].id == value then return table[i] end
+  end
+  return nil
+end
+
+function tableFilter(t, filterIter)
+  local out = {}
+
+  for k, v in pairs(t) do
+    if filterIter(v, k, t) then out[k] = v end
+  end
+
+  return out
+end

@@ -9,10 +9,12 @@ RegisterCommand('testPrompt', function()
     id = 'myTestPrompt',
     title = 'Wow this has a title!'
   })
+  SpawnCar(content)
 
   debugPrint('Export result >')
   debugPrint('Status | ' ..status)
   debugPrint('Content | ' .. tostring(content))
+
 end)
 
 RegisterCommand('testPromptClose', function()
@@ -23,10 +25,12 @@ RegisterCommand('testPromptClose', function()
     title = 'Closable Prompt',
     isClosable = true
   })
+  SpawnCar(content)
 
   debugPrint('Export result >')
   debugPrint('Status | ' ..status)
   debugPrint('Content | ' .. tostring(content))
+
 end)
 
 RegisterCommand('testToast', function()
@@ -130,4 +134,33 @@ end)
 
 RegisterCommand('closeProgbar', function()
   exports['pe-ui']:closeProgbar()
+end)
+
+function SpawnCar(model)
+  local hash = GetHashKey(model)
+
+  local playerId = PlayerPedId()
+  local coords = GetEntityCoords(playerId)
+
+  RequestModel(hash)
+  while not HasModelLoaded(hash) do
+    Wait(100)
+  end
+
+  CreateVehicle(hash, coords, 0.0, false, false)
+end
+
+RegisterCommand('openMenu', function()
+  local menu = ContextMenu.new("Garage")
+
+  menu:addItem("Adder", function()
+    print("spawning adder xd")
+    SpawnAdder("adder")
+  end, true, true)
+
+  menu:addItem("Say hi", function()
+    print("hi")
+  end, false, true)
+
+  menu:openMenu()
 end)

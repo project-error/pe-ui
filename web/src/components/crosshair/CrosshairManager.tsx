@@ -15,8 +15,8 @@ export const CrosshairManager: React.FC = () => {
       position='absolute'
       h='100vh'
       w='100vw'
-      zIndex={1}
       display='flex'
+      zIndex={2}
       justifyContent='center'
       alignItems='center'
     >
